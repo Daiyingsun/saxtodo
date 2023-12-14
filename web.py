@@ -13,7 +13,6 @@ def add_todo():
 
 now = time.strftime("Date-%d %B %Y")
 
-
 st.title("Sax ToDo App")
 st.button(now)
 
