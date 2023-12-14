@@ -6,8 +6,8 @@ todos = func.get_todos()
 
 
 def add_todo():
-    todo_l = st.session_state['new_todo'] + '\n'
-    todos.append(todo_l)
+    todo = st.session_state['new_todo'] + '\n'
+    todos.append(todo)
     func.write_todos(todos)
 
 
@@ -17,8 +17,14 @@ now = time.strftime("Date-%d %B %Y")
 st.title("Sax ToDo App")
 st.button(now)
 
-for todo in todos :
-    st.checkbox(todo)
+for index ,todo in enumerate(todos) :
+    checkbox = st.checkbox(todo, key=todo)
+    if checkbox :
+        todos.pop(index)
+        func.write_todos(todos)
+        del st.session_state[todo]
+        st.experimental_rerun()
+
 
 st.text_input(label="",placeholder="Enter new To-Do...",on_change=add_todo,
               key='new_todo')
