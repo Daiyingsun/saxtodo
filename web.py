@@ -1,6 +1,5 @@
 import streamlit as st
 import func
-import time
 
 todos = func.get_todos()
 
@@ -11,11 +10,8 @@ def add_todo():
     func.write_todos(todos)
 
 
-now = time.strftime("Date-%d %B %Y")
-
 
 st.title("Sax ToDo App")
-st.button(now)
 
 for index ,todo in enumerate(todos) :
     checkbox = st.checkbox(todo, key=todo)
